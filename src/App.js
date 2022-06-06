@@ -19,6 +19,13 @@ function App() {
     localStorage.setItem(LSK, JSON.stringify(ToDos))
   }, [ToDos])
 
+  function toggle(id) {
+    const newtodo = [...ToDos]
+    const todo = newtodo.find(todo => todo.id === id)
+    todo.Complete = !todo.Complete
+    setToDos(newtodo)
+  }
+
   function AddToDo(e){
     const name = NameRef.current.value
     if (name === '') return
@@ -31,11 +38,11 @@ function App() {
 
   return (
     <>
-      <ToDo TD={ToDos} />
+      <ToDo TD={ToDos} toggle={toggle} />
       <input ref={NameRef} type="text" />
       <button onClick={AddToDo}> Add to list</button>
       <button> Empty list</button>
-      <div>0 left to do</div>
+      <div>{ToDos.filter(todo => !todo.Complete).length} left to do</div>
     </>
 
   )
