@@ -1,9 +1,10 @@
 import React from 'react'
+import TDC from './TDC'
 
-export default function ToDo() {
+export default function ToDo({TD}) {
   return (
-    <div>
-        To Do List
-    </div>
+        TD.map(todo => {
+            return <TDC key={todo.id} todo={todo} />
+        })
   )
 }
