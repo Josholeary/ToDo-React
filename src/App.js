@@ -36,12 +36,17 @@ function App() {
     NameRef.current.value = null
   }
 
+  function ClearToDo() {
+    const newtodo = ToDos.filter(todo => !todo.Complete)
+    setToDos(newtodo)
+  }
+
   return (
     <>
       <ToDo TD={ToDos} toggle={toggle} />
       <input ref={NameRef} type="text" />
       <button onClick={AddToDo}> Add to list</button>
-      <button> Empty list</button>
+      <button onClick={ClearToDo}> Empty list</button>
       <div>{ToDos.filter(todo => !todo.Complete).length} left to do</div>
     </>
 
